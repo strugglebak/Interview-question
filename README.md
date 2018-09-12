@@ -20,7 +20,7 @@
     <title>我的页面</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./print.css" media="print">
-    <link rel="stylesheet" href="./mobile.css" media="screen and (max-device-width: 500px)">
+    <link rel="stylesheet" href="./mobile.css" media="(max-width: 500px)">
     <style type="text/css">
       svg {
         width: 100px;height: 100px;
