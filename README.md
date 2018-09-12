@@ -51,14 +51,17 @@
 1. 简单页面的做法是，设置高度为固定值，然后宽度为 100%
 2. 复杂一点的可以采用百分比布局,即利用百分比设置元素的大小进行适配
 3. 再复杂一点的就要用到媒体查询，即 media query, 依据页面的大小来写不同的 css 进行渲染
+
 而目前能做到兼容以上方案的就是动态 rem 方案,该方案需要用到以下几点
 
 - meta viewport
+
     ```
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     ```
     以上代码作用是防止手机页面模拟 980 像素宽度
 - 媒体查询
+
     即 media query, 使用方式类似于
     ```
     @media (条件) {
@@ -81,9 +84,10 @@
     </style>
     ```
 - rem
-    rem 即 **font size of the root element**，网页根元素的 font-size
-    本质上来说，就是将 rem 应用在 width 和 height 上,然后根据根元素的 font-size 值来改变元素宽高的大小
-    利用 sass 的function 功能，在 scss 文件中写入
+
+    rem 即 **font size of the root element**，网页根元素的 font-size,
+    本质上来说，就是将 rem 应用在 width 和 height 上,然后根据根元素的 font-size 值来改变元素宽高的大小,
+    可以利用 sass 的function 功能，在 scss 文件中写入
     ```
     @function px2rem($px) {
         @return $px/$designWidth*10 + rem;
