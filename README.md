@@ -134,3 +134,57 @@ color: 设置阴影的颜色
 
 若设置多重阴影效果，可以用逗号 ',' 隔开
 
+## 问题4
+什么是闭包，闭包的用途是什么？
+
+## 答案
+1. 什么是闭包
+
+有如下代码
+```
+function makeFunc1() {
+    let name = "Mozilla";
+    function displayName() {
+        alert(name);
+    }
+    return displayName;
+}
+
+var myFunc = makeFunc1();
+myFunc();
+```
+在 `funtion dispalyName` 中, 函数 `dispalyName` 访问到了它作用域之外的变量 `name` ，这个就叫做 **闭包**, 即
+
+**闭包是由函数以及创建该函数的词法环境组合而成，而这个环境包含了这个闭包创建时所能访问的所有的局部变量**
+
+2. 闭包的用途是什么
+有如下代码
+```
+var myFunc = (function makeFunc2() {
+    let num = 0;
+    function changeBy(val) {
+        num += val;
+    }
+
+    return {
+        add: function() {
+            changeBy(1);
+        },
+        sub: function() {
+            changeBy(-1);
+        },
+        val: function() {
+            return num;
+        }
+    }
+}).call();
+
+console.log(myFunc.val()); // 0
+myFunc.add();
+console.log(myFunc.val()); // 1
+myFunc.sub();
+console.log(myFunc.val()); // 0
+```
+通过以上代码可以看出，闭包的作用就是 **隐藏变量以及封装**, 目的就是不直接对全局变量进行修改，
+用局部变量以及能访问这个局部变量的函数来替代，最后将这个函数接口暴露出来使用，即可达到目的
+
