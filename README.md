@@ -96,3 +96,41 @@
     ```
     其中 $px 为传入的需要转换的像素值，$designWidth 为设计稿提供的宽度值
 
+## 问题3
+[2017年腾讯前端实习面试题（二面）](https://earthsplitter.github.io/2017/03/31/2017腾讯实习经验总结/)
+用过 CSS3 么，实现圆角矩形和阴影怎么做?
+
+## 答案
+1. 圆角矩形
+使用 `border-radius` 属性
+
+`border-radius` 是一个简写属性,包含 `border-top-left-radius、border-top-right-radius、border-bottom-right-radius，和 border-bottom-left-radius` 
+
+即包含 "左上、右上、右下、左下" 角
+
+示例
+```
+border-radius: 10px; /*半径为 10px 的圆角*/
+
+/*或者*/
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+border-bottom-right-radius: 10px;
+border-bottom-left-radius: 10px;
+```
+
+2. 阴影
+使用 `box-shadow` 属性
+
+`box-shadow` 的语法是 `box-shadow: <inset> <offset-x> <offset-y> <blur-radius> <spread-radius> <color>`
+
+```
+inset: 使用这个，则使阴影在边框内; 若不使用，阴影在边框外
+offset-x, offset-y: 阴影偏移量
+blur-radius: 设置模糊效果，值越大越模糊
+spread-radius: 设置阴影扩大和缩小的效果
+color: 设置阴影的颜色
+```
+
+若设置多重阴影效果，可以用逗号 ',' 隔开
+
