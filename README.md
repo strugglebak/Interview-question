@@ -189,3 +189,46 @@ console.log(myFunc.val()); // 0
 通过以上代码可以看出，闭包的作用就是 **隐藏变量以及封装**, 目的就是不直接对全局变量进行修改，
 用局部变量以及能访问这个局部变量的函数来替代，最后将这个函数接口暴露出来使用，即可达到目的
 
+## 问题5
+call、apply、bind 的用法是什么?
+
+## 答案
+
+- call 用法
+    函数实例调用 `call` 方法，指定函数 `this` 内部的指向, 调用方式为 `func.call(thisValue)`
+    ```
+    var obj = {};
+    var f = function() {
+        return this;
+    };
+    f() === window; // true
+    f.call(obj) === obj; // true
+    ```
+    若有多个参数要传,调用方式为 `func.call(thisValue, arg1, arg2, ...)`
+    ```
+    var f = function(a, b) {
+        return a + b;
+    }
+    f.call(null, 1, 2); // 3
+    ```
+    其中 `thisValue` 为 `this` 所要指向的对象
+- apply 用法
+    与 `call` 方法类似，指定函数 `this` 内部指向，然后再调用该函数, 调用方式为 `func.call(thisValue, [arg1, arg2, ...])`
+    ```
+    var f = function(a, b) {
+        console.log(a + b);
+    }
+    f.apply(null, [1, 2]); // 这里第二个参数必须以数组形式添加
+    ```
+- bind 用法
+    bind 方法用于将函数体内的 `this` 绑定到某个对象,然后 **返回一个新函数**, 调用方式为 `func.bind(thisValue)`
+    ```
+    var obj = { x: 3 };
+    var f = function() {
+        console.log(this.x);
+    };
+    f(); // undefined
+    var f2 = f.bind(obj); // 绑定 this 到 obj 这个对象中
+    f2(); // 3
+    ```
+另外,以上三种方式中，`thisValue` 如果设置为 `null` 或 `undefind`, 那么等同于指定的是全局对象,即 `window`
