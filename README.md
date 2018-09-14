@@ -297,20 +297,68 @@ username=ff&password=123
 
 ## 答案
 1. O(n*n)
+
 冒泡排序:
 ```
 对于一组数列来说，重复走过需要排序的部分，一次比较两个数列中的元素，依照大小规则交换它们的顺序，直到整个数列中不需要做交换的操作为止
 ```
 2. O(n log2 n)
+
 归并排序
 ```
 先将数列中的这堆数分成一个个长度为 2 的子数列，然后使每个子数列有序，然后两两合并, 继续两两合并剩下的已经弄好序的子数列，直到这些子数列合并成一个有序数列为止
 ```
 3. O(n + max)
+
 计数排序
 ```
 先扫描一遍数列中，得到该数列的最大值 maxValue 和最小值 minValue,然后增加一个长度为 [maxValue - minValue + 1] 的数组, 这个数组的下标 index 对应着数列的值，
 
 然后统计数列的值出现的次数，记录在数组下标对应的值上,然后依据这个次数反向填充进原数列中
+```
+
+## 问题10
+如何实现数组去重？
+
+假设有数组 array = [1,5,2,3,4,2,3,1,3,4]
+
+你要写一个函数 unique，使得
+
+unique(array) 的值为 [1,5,2,3,4]
+
+也就是把重复的值都去掉，只保留不重复的值。
+
+要求：
+
+1. 不要做多重循环，只能遍历一次
+2. 请给出两种方案，一种能在 ES 5 环境中运行，一种能在 ES 6 环境中运行（提示 ES 6 环境多了一个 Set 对象）
+
+## 答案
+- ES 5 方案
+```
+function unique(array) {
+  let obj = {};
+  let ret = [];
+  for (let i=0; i < array.length; i++) {
+    let key = array[i];
+    if (!obj[key]) {
+      obj[key] = 1;
+      let value = key;
+      ret.push(value);
+    }
+  }
+  return ret;
+}
+let array = [1,5,2, "xxx", 3,4,2,3,1, "xxx" , "", NaN, undefined, NaN, "", null ,3,4, undefined, null];
+console.log(unique(array));
+```
+
+- ES 6 方案
+```
+let array = [1,5,2, "xxx", 3,4,2,3,1, "xxx" , "", NaN, undefined, NaN, "", null ,3,4, undefined, null];
+
+const items = new Set(array);
+const newArray = Array.from(items);
+console.log(newArray);
 ```
 
