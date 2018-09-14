@@ -265,3 +265,22 @@ call、apply、bind 的用法是什么?
     - 503 Service Unavilable: 表示服务器当前因正在维护或过载，无法响应请求
     - 504 Gateway Timeout: 作为网关或代理服务器尝试执行请求时,未能即时从上游服务器接收到响应
 
+## 问题7
+请写出一个 HTTP post 请求的内容，包括四部分。
+其中
+第四部分的内容是 username=ff&password=123
+第二部分必须含有 Content-Type 字段
+请求的路径为 /path
+
+## 答案
+```
+POST /path HTTP/1.1
+Host: www.baidu.com
+User-Agent: curl/7.58.0
+Accept: */*
+Content-Length: 24
+Content-Type: application/x-www-form-urlencoded
+
+username=ff&password=123
+```
+
