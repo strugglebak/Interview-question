@@ -478,3 +478,99 @@ const newArray = Array.from(items);
 console.log(newArray);
 ```
 
+## JS 高级基础知识
+### 问题 1
+```
+var object = {}
+object.__proto__ ===  ????填空1????  // 为 true
+
+var fn = function(){}
+fn.__proto__ === ????填空2????  // 为 true
+fn.__proto__.__proto__ === ????填空3???? // 为 true
+
+var array = []
+array.__proto__ === ????填空4???? // 为 true
+array.__proto__.__proto__ === ????填空5???? // 为 true
+
+Function.__proto__ === ????填空6???? // 为 true
+Array.__proto__ === ????填空7???? // 为 true
+Object.__proto__ === ????填空8???? // 为 true
+
+true.__proto__ === ????填空9???? // 为 true
+
+Function.prototype.__proto__ === ????填空10???? // 为 true
+```
+
+### 答案
+```
+var object = {}
+object.__proto__ ===  Object.prototype
+
+var fn = function(){}
+fn.__proto__ === Function.prototype
+fn.__proto__.__proto__ === Object.prototype
+
+var array = []
+array.__proto__ === Array.prototype
+array.__proto__.__proto__ === Object.prototype
+
+Function.__proto__ === Function.prototype
+Array.__proto__ === Function.prototype
+Object.__proto__ === Function.prototype
+
+true.__proto__ === Boolean.prototype
+
+Function.prototype.__proto__ === Object.prototype
+```
+
+### 问题 2
+```
+function fn(){
+    console.log(this)
+}
+new fn()
+```
+
+new fn() 会执行 fn，并打印出 this，请问这个 this 有哪些属性？这个 this 的原型有哪些属性？
+
+### 答案
+
+1. 这个 this 有 `__proto__` 属性
+2. 这个 this 的原型有 `constructor` 以及 `__proto__` 属性
+
+### 问题 3
+JSON 和 JavaScript 是什么关系？
+
+JSON 和 JavaScript 的区别有哪些？
+
+### 答案
+1. JSON 的全称叫做 JavaScript Object Notation, 即为 JavaScript 对象表示法，它是一种“与语言无关的数据格式“，衍生自 JavaScript, 所以在某些地方跟 JavaScript 很像，比如传输的数据对象是由一些 "属性-值"对 以及 "数组数据类型" 组成
+2. JavaScript 与 JSON 的区别有如下
+JavaScript          JSON
+undefined           没有
+function fn(){}     没有
+var a = {};a.self = a   没有变量
+{proto}                没有原型链
+null                     null
+['a', 'b']                ["a", "b"]
+{name: 'frank'}    {"name", "frank"}
+'frank'                 "frank"
+
+从以上的表不难看出，JSON 是没有 JavaScript 的 `undefined` `function 定义` `变量定义` 以及 `原型链` 的，并且它里面的对象里的字符串必须是要双引号
+
+### 问题 4
+前端 MVC 是什么？
+
+请用代码大概说明 MVC 三个对象分别有哪些重要属性和方法。
+
+### 答案
+
+### 问题 5
+在 ES5 中如何用函数模拟一个类？
+
+### 答案
+
+### 问题 6
+用过 Promise 吗？举例说明。
+如果要你创建一个返回 Promise 对象的函数，你会怎么写？举例说明。
+### 答案
