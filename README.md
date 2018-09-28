@@ -547,8 +547,8 @@ JSON 和 JavaScript 的区别有哪些？
 1. JSON 是一种"与语言无关的数据格式"，衍生(抄袭)自 JavaScript, 是 JavaScript 的子集
 2. JavaScript 与 JSON 的区别有如下
 
-JSON 不支持函数、undefined、变量、引用、单引号字符串、对象的key不支持单引号也不支持不加引号、没有内置的 Date、Math、RegExp 等。
-而 JavaScript 全都支持。
+    JSON 不支持函数、undefined、变量、引用、单引号字符串、对象的key不支持单引号也不支持不加引号、没有内置的 Date、Math、RegExp 等。
+    而 JavaScript 全都支持。
 
 ### 问题 4
 前端 MVC 是什么？
@@ -604,6 +604,7 @@ var controller = {
 1. 定义这个类的构造函数，并将这个类的一些私有属性放到这个构造函数中
 2. 将这个类相关的公有属性放到这个构造函数的原型对象中，并将这个构造函数的 `prototype` 指向这个原型对象
 3. 使用 `new` 关键字实例化这个构造函数，new 出来的这个对象就可以当作类来使用了
+
 如以下代码
 ```
 function soldier(id) {
@@ -633,6 +634,7 @@ $.ajax({
 }).then(success1, error1).then(success2, error2);
 ```
 以上的 success error 相关函数是自己定义的，成功就调用 success, 失败就调用 error
+
 2. 自己实现 Promise,代码如下
 ```
 function myPromise() {
