@@ -535,8 +535,8 @@ new fn() 会执行 fn，并打印出 this，请问这个 this 有哪些属性？
 
 ### 答案
 
-1. 这个 this 有 `__proto__` 属性
-2. 这个 this 的原型有 `constructor` 以及 `__proto__` 属性
+1. 这个 this 没有属性，但有 `__proto__` 这个隐藏属性,并指向 `fn.prototype`
+2. 这个 this 的原型有 `constructor` 以及 `__proto__` 属性, `constructor` 属性为 `fn`, 而 `__proto__` 属性指向 `Object.prototype`
 
 ### 问题 3
 JSON 和 JavaScript 是什么关系？
@@ -544,19 +544,11 @@ JSON 和 JavaScript 是什么关系？
 JSON 和 JavaScript 的区别有哪些？
 
 ### 答案
-1. JSON 的全称叫做 JavaScript Object Notation, 即为 JavaScript 对象表示法，它是一种“与语言无关的数据格式“，衍生自 JavaScript, 所以在某些地方跟 JavaScript 很像，比如传输的数据对象是由一些 "属性-值"对 以及 "数组数据类型" 组成
+1. JSON 是一种"与语言无关的数据格式"，衍生(抄袭)自 JavaScript, 是 JavaScript 的子集
 2. JavaScript 与 JSON 的区别有如下
-JavaScript          JSON
-undefined           没有
-function fn(){}     没有
-var a = {};a.self = a   没有变量
-{proto}                没有原型链
-null                     null
-['a', 'b']                ["a", "b"]
-{name: 'frank'}    {"name", "frank"}
-'frank'                 "frank"
 
-从以上的表不难看出，JSON 是没有 JavaScript 的 `undefined` `function 定义` `变量定义` 以及 `原型链` 的，并且它里面的对象里的字符串必须是要双引号
+JSON 不支持函数、undefined、变量、引用、单引号字符串、对象的key不支持单引号也不支持不加引号、没有内置的 Date、Math、RegExp 等。
+而 JavaScript 全都支持。
 
 ### 问题 4
 前端 MVC 是什么？
