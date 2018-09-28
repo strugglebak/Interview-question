@@ -564,13 +564,106 @@ null                     null
 请用代码大概说明 MVC 三个对象分别有哪些重要属性和方法。
 
 ### 答案
+1. MVC 属于软件的一种设计模式，即 Model View Controller(模型 视图 控制器),将一个应用层软件分为三层。对于前端来说
+ - Model 层就是用于封装与业务逻辑相关的数据以及对数据的处理方法，它用来跟服务器打交道
+ - View 层就是数据的可视化了，在前端反映的就是页面显示
+ - Controller 层就是执行 Model 层以及 View 层间的组织作用，用来控制一个应用总体的逻辑和流程
+ 总的来说，Model 通过与服务器的请求与响应来获得数据，Controller 通过监听 View 页面的变化，调用 Model 的返回的数据对 View 改变的部分进行可视化的操作，就是其总体流程了
+
+2. 代码如下所示
+```
+var model = {
+    data: null,
+    init(){}, // model 初始化
+    fetch(){}, // model 的数据获取
+    save(){} // model 的数据保存
+}
+var view = {
+    init() {}, // view 初始化
+    template: 'html 内容' // view 网页上的内容
+}
+var controller = {
+    view: null,
+    model: null,
+    init(view, model){
+        // 获取到 view 以及 model 的实例
+        this.view = view;
+        this.model = model;
+        // 分别调用 view 以及 model 的初始化函数对其进行初始化操作
+        this.view.init.call(this.view);
+        this.model.init.call(this.model);
+        // 最后绑定事件
+        this.bindEvents();
+    }
+    render(){
+        // 用来渲染 view
+    },
+    bindEvents(){
+        // 用来绑定事件
+    }
+}
+```
 
 ### 问题 5
 在 ES5 中如何用函数模拟一个类？
 
 ### 答案
+使用 `new` 关键字
+1. 定义这个类的构造函数，并将这个类的一些私有属性放到这个构造函数中
+2. 将这个类相关的公有属性放到这个构造函数的原型对象中，并将这个构造函数的 `prototype` 指向这个原型对象
+3. 使用 `new` 关键字实例化这个构造函数，new 出来的这个对象就可以当作类来使用了
+如以下代码
+```
+function soldier(id) {
+    this.id = id;
+}
+soldier.prototype.walk = function() {
+    // walk code
+}
+soldier.prototype.run = function() {
+    // run.code
+}
+
+var xxx = new soldier(1);
+xxx.walk();
+xxx.run();
+```
 
 ### 问题 6
 用过 Promise 吗？举例说明。
 如果要你创建一个返回 Promise 对象的函数，你会怎么写？举例说明。
 ### 答案
+1. 用过，在使用 jQuery 或 axios ajax 功能时，这个返回的就是 Promise 对象, 如下代码所示
+```
+$.ajax({
+    url: 'www.baidu.com',
+    'method': 'GET'
+}).then(success1, error1).then(success2, error2);
+```
+以上的 success error 相关函数是自己定义的，成功就调用 success, 失败就调用 error
+2. 自己实现 Promise,代码如下
+```
+function myPromise() {
+    return new Promise ( function(resolve, reject) {
+        var condition = false;
+        setTimeout(function() {
+            if (condition) {
+                resolve.call(undefined, "success");
+            } else {
+                reject.call(undefined, "error");
+            }
+        }, 1000);
+    });
+}
+// 使用 myPromise
+var xxx = myPromise();
+xxx.then(
+         (successText)=> {
+           console.log(successText);
+         }, 
+         (errorText)=> {
+           console.log(errorText);
+         }
+);
+```
+
